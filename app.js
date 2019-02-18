@@ -2,8 +2,6 @@ let tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 
 firstScriptTag = document.getElementsByTagName('script')[0];
-console.log(firstScriptTag);
-console.log(firstScriptTag.parentNode);
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 
@@ -63,39 +61,91 @@ function pauseVideo() {
 function Question(delay, answers) {
 	this.delay = delay;
 	this.answers = answers;
+	var self = this;
+	this.render = function() {
+		// console.log("rendering question");
+		$('.answersRow').empty();
+		self.answers.forEach((answer, i) => {
+			var parent = "#answersRowOne";
+			if (i > 1) {
+				parent = "#answersRowTwo"
+			}
+			answer.render(parent);
+		});
+
+	}
 }
 
 function Answer(text, correct, feedback) {
 	this.text = text;
 	this.correct = correct;
 	this.feedback = feedback;
+	var self = this;
+
+	this.render = function(parent) {
+		// console.log("rendering answer: ");
+		// console.log(self);
+		$('<div/>', {
+			class: "answer",
+			text: self.text
+		})
+		.on('click', self.respondToAnswer)
+		.appendTo(parent);
+	}
+
+	this.respondToAnswer = function() {
+		console.log("Responding to answer: ");
+		console.log(self);
+		$('.answersRow').empty();
+		$('<div/>', {
+			class: "answer",
+			text: self.feedback
+		})
+		.on('click', self.finishFeedback)
+		.appendTo('#answersRowOne');
+	}
+
+	this.finishFeedback = function() {
+		console.log("finishing feedback");
+		$('.answersRow').empty();
+		// If answer was correct, proceed with video
+		if (self.correct) {
+			player.playVideo();
+		} else {
+			console.log("wrong answer: returning to original question");
+			questions[currentQuestion].render();
+		}
+	}
 }
 
 function setQuestion(index, questions) {
 	player.pauseVideo();
 	question = questions[index];
 	let parent = "#answersRowOne";
+	question.render();
 
-	$('.answersRow').empty();
-	question.answers.forEach((answer, i) => {
-		var row
-		if (i > 1) {
-			parent = "#answersRowTwo";
-		}
-		$('<div/>', {
-			class: "answer",
-			text: answer.text
-		}).on('click', ev => {
-			if (answer.correct) {
-				player.playVideo();
-			}
-			$('.answersRow').empty();
-			$('<div/>', {
-				class: "answer",
-				text: answer.feedback
-			}).appendTo('#answersRowOne');
-		}).appendTo(parent);
-	});
+	// $('.answersRow').empty();
+	// question.answers.forEach((answer, i) => {
+	// 	var row
+	// 	if (i > 1) {
+	// 		parent = "#answersRowTwo";
+	// 	}
+		// $('<div/>', {
+		// 	class: "answer",
+		// 	text: answer.text
+		// }).on('click', ev => {
+		// 	if (answer.correct) {
+		// 		player.playVideo();
+		// 	}
+		// 	$('.answersRow').empty();
+		// 	$('<div/>', {
+		// 		class: "answer",
+		// 		text: answer.feedback
+		// 	}).on('click', e => {
+
+		// 	}).appendTo('#answersRowOne');
+		// }).appendTo(parent);
+	// });
 
 }
 
