@@ -17,21 +17,17 @@ function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
 		height: playerHeight,
 		width: playerWidth,
-		videoId: 'WYcw_DcZsak',
+		videoId: 'yZYjgVphAV0',
 		host: 'https://www.youtube.com',
 		events: {
 			'onReady': onPlayerReady,
 			'onStateChange': onPlayerStateChange
 		}
 	});
-	console.log("API is ready:");
-	console.log(player);
 }
 
 // Plays video once API has loaded
 function onPlayerReady(event){
-	// alert("Player is ready!");
-	console.log("player is ready");
 	event.target.playVideo();
 }
 
@@ -39,16 +35,10 @@ function onPlayerReady(event){
 // Fires when video begins/pauses
 	// Used to pause video at specified time(s)
 function onPlayerStateChange(event) {
-	console.log("State change");
 	if (event.data == YT.PlayerState.PLAYING) {
 		if (currentQuestion < questions.length - 1) {
 			currentQuestion++;
 			var delayTime;
-			// if (currentQuestion == 0) {
-			// 	delayTime = questions[currentQuestion].time;
-			// } else {
-
-			// }
 			setTimeout(setQuestion, questions[currentQuestion].delay * 1000, currentQuestion, questions);
 		}
 	}
@@ -76,6 +66,7 @@ function Question(delay, answers) {
 	}
 }
 
+// One answer to a given question, whether it's correct, and the feedback to give
 function Answer(text, correct, feedback) {
 	this.text = text;
 	this.correct = correct;
@@ -83,8 +74,6 @@ function Answer(text, correct, feedback) {
 	var self = this;
 
 	this.render = function(parent) {
-		// console.log("rendering answer: ");
-		// console.log(self);
 		$('<div/>', {
 			class: "answer",
 			text: self.text
@@ -93,9 +82,8 @@ function Answer(text, correct, feedback) {
 		.appendTo(parent);
 	}
 
+	// When answer is clicked, show feedback
 	this.respondToAnswer = function() {
-		console.log("Responding to answer: ");
-		console.log(self);
 		$('.answersRow').empty();
 		$('<div/>', {
 			class: "answer",
@@ -105,14 +93,14 @@ function Answer(text, correct, feedback) {
 		.appendTo('#answersRowOne');
 	}
 
+	// When feedback is clicked, proceed or repeat question
 	this.finishFeedback = function() {
-		console.log("finishing feedback");
 		$('.answersRow').empty();
 		// If answer was correct, proceed with video
 		if (self.correct) {
 			player.playVideo();
+		// If answer was wrong, go back to question
 		} else {
-			console.log("wrong answer: returning to original question");
 			questions[currentQuestion].render();
 		}
 	}
@@ -123,29 +111,6 @@ function setQuestion(index, questions) {
 	question = questions[index];
 	let parent = "#answersRowOne";
 	question.render();
-
-	// $('.answersRow').empty();
-	// question.answers.forEach((answer, i) => {
-	// 	var row
-	// 	if (i > 1) {
-	// 		parent = "#answersRowTwo";
-	// 	}
-		// $('<div/>', {
-		// 	class: "answer",
-		// 	text: answer.text
-		// }).on('click', ev => {
-		// 	if (answer.correct) {
-		// 		player.playVideo();
-		// 	}
-		// 	$('.answersRow').empty();
-		// 	$('<div/>', {
-		// 		class: "answer",
-		// 		text: answer.feedback
-		// 	}).on('click', e => {
-
-		// 	}).appendTo('#answersRowOne');
-		// }).appendTo(parent);
-	// });
 
 }
 
