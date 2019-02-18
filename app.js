@@ -45,7 +45,13 @@ function onPlayerStateChange(event) {
 	if (event.data == YT.PlayerState.PLAYING) {
 		if (currentQuestion < questions.length - 1) {
 			currentQuestion++;
-			setTimeout(setQuestion, questions[currentQuestion].time * 1000, currentQuestion, questions);
+			var delayTime;
+			// if (currentQuestion == 0) {
+			// 	delayTime = questions[currentQuestion].time;
+			// } else {
+
+			// }
+			setTimeout(setQuestion, questions[currentQuestion].delay * 1000, currentQuestion, questions);
 		}
 	}
 }
@@ -54,9 +60,8 @@ function pauseVideo() {
 	player.pauseVideo();
 }
 
-function Question(time, duration, answers) {
-	this.time = time;
-	this.duration = duration;
+function Question(delay, answers) {
+	this.delay = delay;
 	this.answers = answers;
 }
 
@@ -69,28 +74,34 @@ function Answer(text, correct, feedback) {
 function setQuestion(index, questions) {
 	player.pauseVideo();
 	question = questions[index];
-
 	let parent = "#answersRowOne";
+
+	$('.answersRow').empty();
 	question.answers.forEach((answer, i) => {
 		var row
 		if (i > 1) {
 			parent = "#answersRowTwo";
 		}
-		$('<button/>', {
+		$('<div/>', {
 			class: "answer",
 			text: answer.text
 		}).on('click', ev => {
-			player.playVideo();
+			if (answer.correct) {
+				player.playVideo();
+			}
 			$('.answersRow').empty();
+			$('<div/>', {
+				class: "answer",
+				text: answer.feedback
+			}).appendTo('#answersRowOne');
 		}).appendTo(parent);
 	});
-
 
 }
 
 
 
-let q1 = new Question(2, 5, [new Answer("Radient heat for a wire wrapped around a mica sheet", true, "You go it!"), new Answer("Direct heat from a wire wrapped around a mica sheet", false, "Nice Try")]);
-let q2 = new Question(3, 5, [new Answer("Because I said so", false, "It is just!"), new Answer("Because it is just", true, "Indeed."), new Answer("Maybe not after all", false, "too bad"), new Answer("Lorem Ipsum", false, "this is feedback")]);
+let q1 = new Question(2, [new Answer("Radient heat for a wire wrapped around a mica sheet", true, "You go it!"), new Answer("Direct heat from a wire wrapped around a mica sheet", false, "Nice Try")]);
+let q2 = new Question(3, [new Answer("Because I said so", false, "It is just!"), new Answer("Because it is just", true, "Indeed."), new Answer("Maybe not after all", false, "too bad"), new Answer("Lorem Ipsum", false, "this is feedback")]);
 let questions = [q1, q2];
 	
