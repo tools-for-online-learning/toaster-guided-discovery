@@ -1,16 +1,23 @@
-* {
+body {
     text-align: center;
+}
+h1 {
+    display: block;
+    position: relative;
+    margin-bottom: 30px;
 }
 #answers {
 	display: inline-block;
 	position: absolute;
 	width: 640px;
-	margin-top: 4%;
+	margin-top: 8%;
 }
 .answersRow {
 	display: inline-block;
 	position: relative;
 	width: 100%;
+    margin-top: 5%;
+    text-align: left;
 }
 .answer {
     display: inline-block;
@@ -19,7 +26,19 @@
     width: 30%;
     margin-bottom: 10%;
     background-color: #FFF;
-    margin-left: 11%;
+    margin-left: 11.5%;
     padding: 10px;
     border-radius: 5px;
+}
+
+#overlay {
+    display: inline-block;
+    position: absolute;
+    height: 266px;
+    width: 640px;
+    background-color: #000;
+    opacity: .8;
+    z-index: 3;
+    top: 0px;
+    left: 0px;
 }

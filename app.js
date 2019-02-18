@@ -54,7 +54,12 @@ function Question(delay, answers) {
 	var self = this;
 	this.render = function() {
 		// console.log("rendering question");
-		$('.answersRow').empty();
+		$('.answersRow').empty(); //Clear old answers
+		// Add overlay to video
+		$('<div/>', {
+			id: "overlay",
+		}).appendTo('#answers');
+
 		self.answers.forEach((answer, i) => {
 			var parent = "#answersRowOne";
 			if (i > 1) {
@@ -96,6 +101,7 @@ function Answer(text, correct, feedback) {
 	// When feedback is clicked, proceed or repeat question
 	this.finishFeedback = function() {
 		$('.answersRow').empty();
+		$('#overlay').remove();
 		// If answer was correct, proceed with video
 		if (self.correct) {
 			player.playVideo();
