@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="./styles.css">
 	<title>How does a toaster work?</title>
 </head>
 <body>
 	<h1>Ever Wonder how a toaster works?</h1>
-<div id="player"></div>
+<div id="playerWrapper">
+	<div id="answers">
+		<div id="answersRowOne" class="answersRow"></div>
+		<div id="answersRowTwo" class="answersRow"></div>
+	</div>
+	<div id="player"></div>
+</div>
 <!-- <iframe id="player" width="560" height="315" src="https://www.youtube.com/embed/WYcw_DcZsak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 </body>
 
+<script type="text/javascript" src="./jquery.min.js"></script>
 <script type="text/javascript" src="./app.js"></script>
 </html>

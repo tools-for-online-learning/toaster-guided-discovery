@@ -1,0 +1,22 @@
+#answers {
+	display: inline-block;
+	position: absolute;
+	width: 640px;
+	margin-top: 4%;
+}
+.answersRow {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+}
+.answer {
+    display: inline-block;
+    position: relative;
+    z-index: 5;
+    width: 30%;
+    margin-bottom: 10%;
+    background-color: #FFF;
+    margin-left: 11%;
+    padding: 10px;
+    border-radius: 5px;
+}
