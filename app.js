@@ -115,8 +115,16 @@ function setQuestion(index, questions) {
 }
 
 
+// pause at 42s
+let q0 = new Question(42, [new Answer("Made your guess?", true, "Nice!")]);
+// pause at 58s
+let q1 = new Question(16, [new Answer("Radient heat from a wire wrapped around a mica sheet", true, "You got it!"), new Answer("Direct heat from a wire wrapped around a mica sheet", false, "Nice Try")]);
+// pause at 1:33
+let q2 = new Question(35, [new Answer("Because I said so", false, "It is just!"), new Answer("Because it is just", true, "Indeed."), new Answer("Maybe not after all", false, "too bad"), new Answer("Lorem Ipsum", false, "this is feedback")]);
+// pause at 2:52
+let q3 = new Question(79, [new Answer("The cage radiates cold", false, "Not quite"), new Answer("The cage blocks parts of the toast from getting radient heat", true, "Great job!")]);
+// pause at 3:38
+let q4 = new Question(46, [new Answer("The cage is electrified like the wires", false, "It would be dangerous to electrify the cage!"), new Answer("The cage absorbs radient heat from the wire and conducts it into the toast", true, "Genious!")]);
 
-let q1 = new Question(2, [new Answer("Radient heat for a wire wrapped around a mica sheet", true, "You go it!"), new Answer("Direct heat from a wire wrapped around a mica sheet", false, "Nice Try")]);
-let q2 = new Question(3, [new Answer("Because I said so", false, "It is just!"), new Answer("Because it is just", true, "Indeed."), new Answer("Maybe not after all", false, "too bad"), new Answer("Lorem Ipsum", false, "this is feedback")]);
-let questions = [q1, q2];
+let questions = [q0, q1, q2, q3, q4];
 	
