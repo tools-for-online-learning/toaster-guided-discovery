@@ -1,5 +1,10 @@
+* {
+  font-family: "Bookman Old Style", Bookman, "Rufina", "Goudy Old Style", Garamond, serif !important;
+}
+
 body {
     text-align: center;
+    background-color: #757474;
 }
 h1 {
     display: block;
@@ -13,10 +18,10 @@ h1 {
 	margin-top: 8%;
 }
 .answersRow {
-	display: inline-block;
-	position: relative;
-	width: 100%;
-    margin-top: 5%;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    margin-top: 1%;
     text-align: left;
 }
 .answer {
@@ -29,16 +34,31 @@ h1 {
     margin-left: 11.5%;
     padding: 10px;
     border-radius: 5px;
+    font-size: 14pt;
 }
 
+
+.feedback {
+    display: inline-block;
+    position: relative;
+    z-index: 5;
+    width: 30%;
+    margin-bottom: 3%;
+    margin-left: 30%;
+    background-color: #FFF;
+    margin-left: 11.5%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14pt;
+}
 #overlay {
     display: inline-block;
     position: absolute;
-    height: 266px;
+    height: 300px;
     width: 640px;
     background-color: #000;
     opacity: .8;
     z-index: 3;
-    top: 0px;
+    top: -36px;
     left: 0px;
 }

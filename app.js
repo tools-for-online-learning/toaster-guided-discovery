@@ -86,7 +86,7 @@ function Question(delay, answers) {
 			answer.render(parent);
 		});
 		if (!question_repeat) {
-			$('#answers').show(500); // Reveal answers
+			$('#answers').show(250); // Reveal answers
 		}
 
 	}
@@ -114,7 +114,7 @@ function Answer(text, correct, feedback) {
 	this.respondToAnswer = function() {
 		$('.answersRow').empty();
 		$('<div/>', {
-			class: "answer",
+			class: "feedback",
 			text: self.feedback
 		})
 		.on('click', self.finishFeedback) // click handler when feedback is pressed
@@ -152,11 +152,11 @@ function setQuestion(index, questions) {
 // pause at 42s
 let q0 = new Question(42, [new Answer("Made your guess? Click here", true, "Nice! Click to continue")]);
 // pause at 58s
-let q1 = new Question(16, [new Answer("Radient heat from an electrified wire", true, "You got it!"), new Answer("Direct heat from an electrified wire", false, "Nice Try")]);
+let q1 = new Question(16, [new Answer("Radient heat from an electrified wire", true, "You got it!"), new Answer("Direct heat from an electrified wire", false, "The electric wire is held apart from the toast, so the heat is radient")]);
 // pause at 1:33
 let q2 = new Question(35, [new Answer("A spring holds the toast in place and a magnet pops the toast up", false, "Good try, but not quite."), new Answer("A spring holds the toast in place and another spring pops the toast up", false, "Close! You're right about how the toast pops up"), new Answer("A magnet holds the toast in place and a spring pops the toast up", true, "Very good!"), new Answer("A magnet holds the toast in place and another magnet pops the toast up", false, "Almost! You're right about how the toast is held in place")]);
 // pause at 2:52
-let q3 = new Question(79, [new Answer("The cage radiates cold", false, "Cold can't actually be 'made', but heat can be removed"), new Answer("The cage blocks parts of the toast from getting radient heat", true, "Great job!")]);
+let q3 = new Question(79, [new Answer("The cage generates cold and conducts the cold into the toast", false, "Cold can't actually be 'made', but heat can be removed"), new Answer("The cage blocks parts of the toast from getting radient heat", true, "Great job!")]);
 // pause at 3:38
 let q4 = new Question(46, [new Answer("The cage is electrified like the wires", false, "It would be dangerous to electrify the cage!"), new Answer("The cage absorbs radient heat from the wire and conducts it into the toast", true, "Toast-tastic!")]);
 
